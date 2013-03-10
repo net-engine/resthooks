@@ -3,4 +3,5 @@ class User < ActiveRecord::Base
 
   has_many :beers
   has_many :burgers
+  has_many :resource_subscriptions
 end

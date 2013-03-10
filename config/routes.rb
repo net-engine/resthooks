@@ -4,6 +4,7 @@ Resthooks::Application.routes.draw do
       resources :users, only: :index
       resources :beers, only: :index
       resources :burgers, only: :index
+      resources :resource_subscriptions, only: :index
     end
   end
   root to: "application#index"

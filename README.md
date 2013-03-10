@@ -1,21 +1,15 @@
 # RESTHooks
 ## Stop polling
 
-eg. POST api/v1/event_subscriptions (user_id from token in header)
+eg. POST api/v1/event_subscriptions (user token in header)
 
 ```json
 {
-  "post_url": "https://example.com/some_hook?user_id=123",
-  "authentication": null,
-  "resources": [
-    {
-      "type": "beer",
-      "events": ["all"]
-    },
-    {
-      "type": "burgers",
-      "events": ["create, update"]
-    }
-  ]
+  "resource_subscription": {
+    "post_url": "https://example.com/some_hook?user_id=123",
+    "authentication": null,
+    "version": 1,
+    "resource": "beer"
+  }
 }
 ```
