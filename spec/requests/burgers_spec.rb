@@ -23,11 +23,13 @@ describe "burgers API" do
             "burgers": [
               {
                 "id": #{burger1.id},
-                "user_id": #{customer.id}
+                "user_id": #{customer.id},
+                "updated_at": "#{burger1.updated_at.iso8601}"
               },
               {
                 "id": #{burger2.id},
-                "user_id": #{customer.id}
+                "user_id": #{customer.id},
+                "updated_at": "#{burger2.updated_at.iso8601}"
               }
             ]
           }

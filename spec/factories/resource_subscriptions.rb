@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :resource_subscription do
-    user nil
-    post_url "MyString"
+    user
+    post_url "https://api.example.com/hook"
     version 1
-    resource "MyString"
+    subscribed_resource "beers"
   end
 end

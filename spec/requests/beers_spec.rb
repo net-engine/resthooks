@@ -23,11 +23,13 @@ describe "Beers API" do
             "beers": [
               {
                 "id": #{beer1.id},
-                "user_id": #{customer.id}
+                "user_id": #{customer.id},
+                "updated_at": "#{beer1.updated_at.iso8601}"
               },
               {
                 "id": #{beer2.id},
-                "user_id": #{customer.id}
+                "user_id": #{customer.id},
+                "updated_at": "#{beer2.updated_at.iso8601}"
               }
             ]
           }

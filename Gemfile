@@ -5,6 +5,7 @@ gem 'rails', '4.0.0.beta1'
 gem 'active_model_serializers'
 gem 'puma'
 gem 'pg'
+gem 'rails-observers'
 
 group :development, :test do
   gem 'factory_girl_rails'

@@ -25,7 +25,10 @@ describe "Resource Subscriptions API" do
                   "id": #{resource_subscription.id},
                   "post_url": "#{resource_subscription.post_url}",
                   "version": #{resource_subscription.version},
-                  "authentication": null
+                  "authentication": null,
+                  "subscribed_resource": "#{resource_subscription.subscribed_resource}",
+                  "updated_at": "#{resource_subscription.updated_at.iso8601}"
+
                 }
               ]
             }

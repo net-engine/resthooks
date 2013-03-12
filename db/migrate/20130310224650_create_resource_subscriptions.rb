@@ -4,7 +4,7 @@ class CreateResourceSubscriptions < ActiveRecord::Migration
       t.references :user, index: true
       t.string :post_url
       t.integer :version
-      t.string :resource
+      t.string :subscribed_resource
 
       t.timestamps
     end

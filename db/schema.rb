@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20130310224650) do
     t.integer  "user_id"
     t.string   "post_url"
     t.integer  "version"
-    t.string   "resource"
+    t.string   "subscribed_resource"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
