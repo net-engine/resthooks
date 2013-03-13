@@ -43,6 +43,13 @@ describe NotificationWorker do
 
       worker.perform(payload: payload, url: url)
     end
-  end
 
+    it "rescues exceptions during the POST" do
+      NotificationWorker.stub(:post).and_raise "chaos!!"
+
+      expect {
+        worker.perform({})
+      }.to_not raise_error      
+    end
+  end
 end
