@@ -6,7 +6,7 @@ Resthooks::Application.routes.draw do
       resources :users, only: :index
       resources :beers, only: [:index, :create]
       resources :burgers, only: [:index, :create]
-      resources :resource_subscriptions, only: :index
+      resources :resource_subscriptions, only: [:index, :create]
     end
   end
   root to: "application#index"
