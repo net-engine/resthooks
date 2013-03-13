@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-class WebHookWorker; end;
-
 describe ResourceSubscription do
   it { should belong_to(:user) }
 
@@ -55,26 +53,26 @@ describe ResourceSubscription do
     let(:subscription) { build_stubbed(:resource_subscription) }
 
     before(:each) do
-      WebHookWorker.stub(:perform_async)
+      NotificationWorker.stub(:perform_async)
     end
 
     context "when the subscription applies to the publishable resource" do
       context "when the subscription applies to the publishable event" do
         it "adds a worker to deliver the notification" do
-          WebHookWorker.should_receive(:perform_async)
+          NotificationWorker.should_receive(:perform_async)
 
           subscription.publish(arguments)
         end
 
         it "gives the worker an appropriate JSON payload" do
           V1::NotificationSerializer.any_instance.stub(:to_json).and_return("foo")
-          WebHookWorker.should_receive(:perform_async).with(hash_including(payload: "foo"))
+          NotificationWorker.should_receive(:perform_async).with(hash_including(payload: "foo"))
 
           subscription.publish(arguments)
         end
 
         it "gives the worker an appropriate URL" do
-          WebHookWorker.should_receive(:perform_async).with(hash_including(url: subscription.post_url))
+          NotificationWorker.should_receive(:perform_async).with(hash_including(url: subscription.post_url))
 
           subscription.publish(arguments)
         end
@@ -86,7 +84,7 @@ describe ResourceSubscription do
 
       context "when the subscription applies to the publishable event" do
         it "adds a worker to deliver the notification" do
-          WebHookWorker.should_not_receive(:perform_async)
+          NotificationWorker.should_not_receive(:perform_async)
 
           subscription.publish(arguments)
         end

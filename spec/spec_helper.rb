@@ -21,6 +21,11 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.start
+    unless example.metadata[:enable_observer] == true
+      ResourceObserver.any_instance.stub(:after_create)
+      ResourceObserver.any_instance.stub(:after_save)
+      ResourceObserver.any_instance.stub(:after_destroy)
+    end
   end
 
   config.after(:each) do

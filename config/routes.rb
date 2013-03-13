@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Resthooks::Application.routes.draw do
   namespace :api, format: :json do
     namespace :v1 do
@@ -8,4 +10,6 @@ Resthooks::Application.routes.draw do
     end
   end
   root to: "application#index"
+
+  mount Sidekiq::Web => '/sidekiq'
 end
