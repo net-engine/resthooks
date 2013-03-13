@@ -21,7 +21,7 @@ class ResourceSubscription < ActiveRecord::Base
 
     return unless subscription_is_applicable
 
-    WebHookWorker.perform_async url: post_url,
+    NotificationWorker.perform_async url: post_url,
                                 payload: notification_payload
   end
 
