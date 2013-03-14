@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :burger do
-    user nil
+    user
+    deliciousness 1
   end
 end
