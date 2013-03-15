@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 
 Resthooks::Application.routes.draw do
+  root to: "landings#show"
+
   namespace :api, format: :json do
     namespace :v1 do
       resources :users, only: :index
@@ -9,7 +11,8 @@ Resthooks::Application.routes.draw do
       resources :resource_subscriptions, only: [:index, :create]
     end
   end
-  root to: "application#index"
+
+  resource :landing, only: :show
 
   mount Sidekiq::Web => '/sidekiq'
 end
