@@ -3,6 +3,8 @@ require 'sidekiq/web'
 Resthooks::Application.routes.draw do
   root to: "landings#show"
 
+  devise_for :users
+
   namespace :api, format: :json do
     namespace :v1 do
       resources :users, only: :index
