@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :beer do
     user
+    deliciousness 1
   end
 end
