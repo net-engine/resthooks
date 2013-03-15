@@ -1,7 +1,7 @@
 # RESTHooks
 ## Stop polling
 
-eg. POST api/v1/event_subscriptions (user token in header)
+eg. POST api/v1/resource_subscriptions (user token in header)
 
 ```json
 {
