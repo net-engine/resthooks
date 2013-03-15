@@ -9,6 +9,8 @@ gem 'puma'
 gem 'pg'
 gem 'rails-observers'
 gem 'sidekiq'
+gem 'sinatra'
+gem 'slim'
 
 group :development, :test do
   gem 'factory_girl_rails'
@@ -19,8 +21,6 @@ group :development, :test do
   gem 'pry'
   gem 'rb-fsevent', '~> 0.9.1'
   gem 'rspec-rails'
-  gem 'sinatra', require: false
-  gem 'slim', require: false
 end
 
 group :test do
