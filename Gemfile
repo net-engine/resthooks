@@ -4,7 +4,7 @@ ruby "2.0.0"
 gem 'rails', '4.0.0.beta1'
 
 gem 'active_model_serializers'
-gem 'devise'
+gem 'devise', git: "https://github.com/plataformatec/devise.git", branch: "rails4"
 gem 'haml-rails'
 gem 'httparty'
 gem 'puma'

@@ -3,7 +3,7 @@ require 'sidekiq/web'
 Resthooks::Application.routes.draw do
   root to: "landings#show"
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: "users/registrations" }
 
   namespace :api, format: :json do
     namespace :v1 do
