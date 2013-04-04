@@ -15,6 +15,7 @@ gem 'sinatra'
 gem 'slim'
 
 group :development, :test do
+  gem 'debugger'
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'foreman'
