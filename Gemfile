@@ -29,6 +29,7 @@ end
 group :test do
   gem 'database_cleaner', github: "bmabey/database_cleaner"
   gem 'simplecov', require: false
+  gem 'coveralls', require: false
   gem 'shoulda-matchers'
 end
 
