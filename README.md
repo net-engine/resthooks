@@ -8,12 +8,12 @@
 
 All requests must contain HTTP_AUTHORIZATION header with "Token token="USER-TOKEN-PREVIOUSLY-PROVIDED""
 
-There are two main resources. They are called Beers and Burguers, and both have a deliciousness field.
+There are two main resources. They are called Beers and burgers, and both have a deliciousness field.
 
 
-#### Create beers and burguers
+#### Create beers and burgers
 
-All examples will use beers. For burguers, please replace beers and use burguers instead.
+All examples will use beers. For burgers, please replace beers and use burgers instead.
 
 You can create beers by posting to /api/v1/beers with the following payload:
 
@@ -39,7 +39,7 @@ curl "http://localhost/api/v1/beers" \
       }'
 ```
 
-#### Update beers and burguers
+#### Update beers and burgers
 
 You can update them by putting to /api/v1/beers/ID with the following payload:
 
@@ -67,7 +67,7 @@ curl "http://localhost/api/v1/beers/1" \
 
 ### Using the resthooks for your service
 
-So now you've got beers and burguers, your service can be subscribed to receive updates when they get modified/created/destroyed.
+So now you've got beers and burgers, your service can be subscribed to receive updates when they get modified/created/destroyed.
 
 You need to post to /api/v1/resource_subscriptions (user token in header)
 
