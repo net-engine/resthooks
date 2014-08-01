@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "Beers API" do
+describe "Beers API", type: :request do
   let!(:customer) { create(:user) }
   let(:headers)  { { 'HTTP_AUTHORIZATION' => "Token token=\"#{customer.api_token}\"", 'Accept' => 'application/json' } }
 
@@ -9,7 +9,7 @@ describe "Beers API" do
       it "responds with 200" do
         get "/api/v1/beers.json", nil, headers
 
-        response.should be_success
+        expect(response).to be_success
       end
 
       context "when the user has purchased beers" do
@@ -36,7 +36,7 @@ describe "Beers API" do
             }
           }
 
-          JSON.parse(response.body).should == JSON.parse(response_body)
+          expect(JSON.parse(response.body)).to eq(JSON.parse(response_body))
         end
       end
     end
@@ -45,7 +45,7 @@ describe "Beers API" do
       it "responds with 401" do
         get "/api/v1/beers.json"
 
-        response.status.should eq(401)
+        expect(response.status).to eq(401)
       end
     end
   end
@@ -63,19 +63,19 @@ describe "Beers API" do
       it "should succeed" do
         post "/api/v1/beers.json", JSON.parse(json), headers
 
-        response.should be_success
+        expect(response).to be_success
       end
 
       it "creates a beer" do
         expect {
-          post "/api/v1/beers.json", JSON.parse(json), headers 
+          post "/api/v1/beers.json", JSON.parse(json), headers
         }.to change(Beer, :count).by(1)
       end
 
       it "allows specification of deliciousness" do
-        post "/api/v1/beers.json", JSON.parse(json), headers 
+        post "/api/v1/beers.json", JSON.parse(json), headers
 
-        Beer.last.deliciousness.should == 3
+        expect(Beer.last.deliciousness).to eq(3)
       end
     end
   end
