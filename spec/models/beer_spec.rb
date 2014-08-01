@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Beer do
-  it { should belong_to(:user) }
+describe Beer, type: :model do
+  it { is_expected.to belong_to(:user) }
 end

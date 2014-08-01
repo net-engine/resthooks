@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "Resource Subscriptions API" do
+describe "Resource Subscriptions API", type: :request do
   let!(:customer) { create(:user) }
   let(:headers)  { { 'HTTP_AUTHORIZATION' => "Token token=\"#{customer.api_token}\"", 'Accept' => 'application/json' } }
 
@@ -10,7 +10,7 @@ describe "Resource Subscriptions API" do
         it "responds with 200" do
           get "/api/v1/resource_subscriptions.json", nil, headers
 
-          response.should be_success
+          expect(response).to be_success
         end
 
         context "given an existing resource_subscription" do
@@ -35,7 +35,7 @@ describe "Resource Subscriptions API" do
               }
             }
 
-            JSON.parse(response.body).should == JSON.parse(response_body)
+            expect(JSON.parse(response.body)).to eq(JSON.parse(response_body))
           end
         end
       end
@@ -45,7 +45,7 @@ describe "Resource Subscriptions API" do
       it "responds with 401" do
         get "/api/v1/resource_subscriptions.json"
 
-        response.status.should eq(401)
+        expect(response.status).to eq(401)
       end
     end
   end
@@ -66,19 +66,19 @@ describe "Resource Subscriptions API" do
       it "should succeed" do
         post "/api/v1/resource_subscriptions.json", JSON.parse(json), headers
 
-        response.should be_success
+        expect(response).to be_success
       end
 
       it "creates a resource_subscription" do
         expect {
-          post "/api/v1/resource_subscriptions.json", JSON.parse(json), headers 
+          post "/api/v1/resource_subscriptions.json", JSON.parse(json), headers
         }.to change(ResourceSubscription, :count).by(1)
       end
 
       it "allows specification of subscribed_resource" do
-        post "/api/v1/resource_subscriptions.json", JSON.parse(json), headers 
+        post "/api/v1/resource_subscriptions.json", JSON.parse(json), headers
 
-        ResourceSubscription.last.subscribed_resource.should == "beers"
+        expect(ResourceSubscription.last.subscribed_resource).to eq("beers")
       end
     end
   end

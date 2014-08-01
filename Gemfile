@@ -1,21 +1,19 @@
 source 'https://rubygems.org'
-ruby "2.0.0"
 
-gem 'rails', '4.0.0.beta1'
+gem 'rails', '4.0.8'
 
 gem 'active_model_serializers'
-gem 'devise', git: "https://github.com/plataformatec/devise.git", branch: "rails4"
+gem 'devise'
 gem 'haml-rails'
 gem 'httparty'
-gem 'puma'
 gem 'pg'
+gem 'puma'
 gem 'rails-observers'
 gem 'sidekiq'
 gem 'sinatra'
 gem 'slim'
 
 group :development, :test do
-  gem 'debugger'
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'foreman'
@@ -27,10 +25,9 @@ group :development, :test do
 end
 
 group :test do
-  gem 'database_cleaner', github: "bmabey/database_cleaner"
-  gem 'simplecov', require: false
-  gem 'coveralls', require: false
+  gem 'database_cleaner'
   gem 'shoulda-matchers'
+  gem 'simplecov', require: false
 end
 
 group :production do
