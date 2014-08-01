@@ -5,7 +5,7 @@ module V2
   class BurgerSerializer;  end
 end
 
-describe SerializerFinder do    
+describe SerializerFinder do
   describe ".new" do
     it "is initialized with a hash" do
       expect {
@@ -15,19 +15,19 @@ describe SerializerFinder do
 
     context "when given a class as a resource" do
       it "pluralises and underscores" do
-        SerializerFinder.new(resource: Beer).resource.should == "beers"
+        expect(SerializerFinder.new(resource: Beer).resource).to eq("beers")
       end
     end
-    
+
     context "when given a singular string as a resource" do
       it "pluralises and underscores" do
-        SerializerFinder.new(resource: "beer").resource.should == "beers"
+        expect(SerializerFinder.new(resource: "beer").resource).to eq("beers")
       end
     end
 
     context "when given a string for the version number" do
       it "coerces the version to an integer" do
-        SerializerFinder.new(version: "1").version.should == 1
+        expect(SerializerFinder.new(version: "1").version).to eq(1)
       end
     end
   end
@@ -38,23 +38,23 @@ describe SerializerFinder do
     let(:finder) { SerializerFinder.new(resource: resource, version: version) }
 
     it "returns a class" do
-      finder.serializer.should be_a_kind_of Class
+      expect(finder.serializer).to be_a_kind_of Class
     end
 
     it "returns the requested version" do
-      finder.serializer.should == V1::BeerSerializer
+      expect(finder.serializer).to eq(V1::BeerSerializer)
     end
 
     it "can return other versions" do
       finder.version = 2
-      
-      finder.serializer.should_not == V1::BeerSerializer
+
+      expect(finder.serializer).not_to eq(V1::BeerSerializer)
     end
 
     it "doesn't return the serializer for another resource" do
       finder.resource = "burgers"
 
-      finder.serializer.should_not == V1::BeerSerializer
+      expect(finder.serializer).not_to eq(V1::BeerSerializer)
     end
   end
 end

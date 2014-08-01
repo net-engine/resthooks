@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "Users API" do
+describe "Users API", type: :request do
   let!(:customer) { create(:user) }
   let(:headers)  { { 'HTTP_AUTHORIZATION' => "Token token=\"#{customer.api_token}\"", 'Accept' => 'application/json' } }
 
@@ -8,7 +8,7 @@ describe "Users API" do
     it "responds with 200" do
       get "/api/v1/users.json", nil, headers
 
-      response.should be_success
+      expect(response).to be_success
     end
 
     it "responds with a valid JSON representation" do
@@ -26,7 +26,7 @@ describe "Users API" do
         }
       }
 
-      JSON.parse(response.body).should == JSON.parse(response_body)
+      expect(JSON.parse(response.body)).to eq(JSON.parse(response_body))
     end
   end
 
@@ -34,7 +34,7 @@ describe "Users API" do
     it "responds with 401" do
       get "/api/v1/users.json"
 
-      response.status.should eq(401)
+      expect(response.status).to eq(401)
     end
   end
 end

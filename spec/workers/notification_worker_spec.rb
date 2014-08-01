@@ -2,8 +2,8 @@ require 'spec_helper'
 require 'sidekiq/testing'
 
 describe NotificationWorker do
-  before(:each) do
-    NotificationWorker.stub(:post)
+  before do
+    allow(NotificationWorker).to receive(:post)
     described_class.clear
   end
 
@@ -30,26 +30,26 @@ describe NotificationWorker do
 
     it "sets the url" do
       worker.perform(url: url)
-      worker.url.should == url
+      expect(worker.url).to eq(url)
     end
 
     it "sets the payload" do
       worker.perform(payload: payload)
-      worker.payload.should == payload
+      expect(worker.payload).to eq(payload)
     end
 
     it "posts the payload to the url" do
-      NotificationWorker.should_receive(:post).with(url, body: payload, headers: headers)
+      expect(NotificationWorker).to receive(:post).with(url, body: payload, headers: headers)
 
       worker.perform(payload: payload, url: url)
     end
 
     it "rescues exceptions during the POST" do
-      NotificationWorker.stub(:post).and_raise "chaos!!"
+      allow(NotificationWorker).to receive(:post).and_raise "chaos!!"
 
       expect {
         worker.perform({})
-      }.to_not raise_error      
+      }.to_not raise_error
     end
   end
 end

@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Burger do
-  it { should belong_to(:user) }
+describe Burger, type: :model do
+  it { is_expected.to belong_to(:user) }
 end
